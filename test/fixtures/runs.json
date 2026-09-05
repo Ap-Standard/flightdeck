@@ -1,0 +1,16 @@
+{
+  "now": "2026-10-02T00:00:00Z",
+  "runs": [
+    { "id": 33950000001, "repo": "Ap-Standard/flightdeck", "conclusion": "success", "createdAt": "2026-09-05T03:10:00Z", "url": "https://github.com/Ap-Standard/flightdeck/actions/runs/33950000001" },
+    { "id": 33950000002, "repo": "Ap-Standard/flightdeck", "conclusion": "success", "createdAt": "2026-09-15T00:30:00Z", "url": "https://github.com/Ap-Standard/flightdeck/actions/runs/33950000002" }
+  ],
+  "nightly": [
+    { "id": 1001, "event": "workflow_dispatch", "status": "completed", "conclusion": "success", "createdAt": "2026-09-05T03:05:00Z" },
+    { "id": 1002, "event": "schedule", "status": "completed", "conclusion": "success", "createdAt": "2026-09-06T06:24:00Z" },
+    { "id": 1003, "event": "schedule", "status": "completed", "conclusion": "success", "createdAt": "2026-09-07T06:24:00Z" },
+    { "id": 1004, "event": "schedule", "status": "completed", "conclusion": "failure", "createdAt": "2026-09-08T06:24:00Z" },
+    { "id": 1005, "event": "workflow_dispatch", "status": "completed", "conclusion": "success", "createdAt": "2026-09-08T09:00:00Z" },
+    { "id": 1006, "event": "schedule", "status": "completed", "conclusion": "success", "createdAt": "2026-09-09T06:24:00Z" },
+    { "id": 1007, "event": "schedule", "status": "in_progress", "conclusion": null, "createdAt": "2026-10-01T06:23:00Z" }
+  ]
+}
