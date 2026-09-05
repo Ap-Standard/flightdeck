@@ -18,7 +18,7 @@ this portfolio that concluded `success` and was created after the release was
 published. flightdeck confirms the run through one REST call and counts
 nothing else as a deploy. The link is written by hand after publishing, which
 is the point: someone looked afterward and left evidence where the dashboard
-can check.
+can check it.
 
 The convention is the one twoseat's runbook prescribes for cutting a release,
 so both repositories follow one rule.
