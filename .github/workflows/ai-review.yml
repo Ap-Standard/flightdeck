@@ -1,0 +1,22 @@
+# twoseat reviews every pull request here, comment-only, pinned to its release.
+name: ai-review
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Ap-Standard/twoseat@v0.1.0
+        with:
+          api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+          primary-model: claude-sonnet-5
+          # Rates are this workflow's claim, checked against Anthropic's published pricing on 2026-09-03.
+          input-price-per-mtok: '3.00'
+          output-price-per-mtok: '15.00'
+          blocking-disabled: ${{ vars.TWOSEAT_BLOCKING_DISABLED }}
