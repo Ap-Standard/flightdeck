@@ -1,0 +1,26 @@
+{
+  "name": "flightdeck",
+  "version": "0.0.0",
+  "description": "Nightly delivery metrics for the Ap-Standard portfolio, each with its gaming analysis and cross-check.",
+  "type": "module",
+  "private": true,
+  "license": "Apache-2.0",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "render": "tsx src/cli.ts",
+    "render:fixtures": "tsx src/cli.ts --fixtures"
+  },
+  "homepage": "https://ap-standard.github.io/flightdeck/",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "eslint": "^10.9.1",
+    "tsx": "4.23.13",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.69.0",
+    "vitest": "^4.1.11"
+  }
+}
