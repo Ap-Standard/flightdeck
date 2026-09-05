@@ -1,0 +1,46 @@
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      # The command nightly.yml runs, against fixtures: the render path is proven on every PR without a token.
+      - run: npx tsx src/cli.ts --fixtures
+      - name: rendered page holds no unformatted value
+        run: |
+          test -s site/index.html && test -s site/card.svg
+          if grep -nE 'NaN|undefined|null' site/index.html site/card.svg; then echo "::error::site/ holds an unformatted value."; exit 1; fi
+      # A file git reads as binary gets no patch from the pull request files API, so no review gate can see it.
+      - name: source files are reviewable
+        run: |
+          binary=$(git diff --numstat "$(git hash-object -t tree /dev/null)" HEAD | awk '$1 == "-" { print $3 }')
+          if [ -n "$binary" ]; then echo "::error::git reads these tracked files as binary:"; echo "$binary"; exit 1; fi
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Pinned so CI scans with the version a change is checked against locally.
+          GITLEAKS_VERSION: 8.30.1

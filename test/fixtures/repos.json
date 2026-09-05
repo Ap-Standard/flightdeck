@@ -1,0 +1,24 @@
+{
+  "twoseat": {
+    "pullRequests": [
+      { "number": 23, "title": "Freeze the gate at v0.1.0 and render the scorecard as the README hero", "createdAt": "2026-09-04T17:29:23Z", "mergedAt": "2026-09-04T17:43:49Z", "body": null, "labels": [], "comments": [ { "body": "<!-- twoseat:review -->\n### twoseat\n\n**No findings.**\n\n| Field | Value |\n| --- | --- |\n| Decision | pass |", "createdAt": "2026-09-04T17:30:10Z" } ] },
+      { "number": 19, "title": "Decide what blocks, and never enforce it from inside the gate", "createdAt": "2026-09-03T23:31:53Z", "mergedAt": "2026-09-04T04:40:29Z", "body": null, "labels": ["twoseat:unreviewed"], "comments": [ { "body": "<!-- twoseat:review -->\n### twoseat\n\n**The review did not run.**\n\n| Decision | not-reviewed |", "createdAt": "2026-09-04T04:30:00Z" }, { "body": "<!-- twoseat:review -->\n### twoseat\n\n**No findings.**\n\n| Decision | pass |", "createdAt": "2026-09-03T23:33:00Z" } ] },
+      { "number": 17, "title": "Date the token-rate verification instead of disclaiming it", "createdAt": "2026-09-03T21:20:13Z", "mergedAt": "2026-09-03T21:39:27Z", "body": null, "labels": [], "comments": [ { "body": "<!-- twoseat:review -->\n### twoseat\n\n**No findings.** The seat reviewed the diff below and reported nothing.", "createdAt": "2026-09-03T21:21:00Z" } ] },
+      { "number": 9, "title": "feat: add action skeleton with deterministic diff ingestion", "createdAt": "2026-09-02T20:26:24Z", "mergedAt": "2026-09-03T04:08:48Z", "body": null, "labels": [], "comments": [] }
+    ],
+    "releases": [
+      { "name": "v0.1.0", "tagName": "v0.1.0", "isDraft": false, "isPrerelease": false, "publishedAt": "2026-09-04T18:07:16Z", "description": "The first release.\n\n## Verified\n\nhttps://github.com/Ap-Standard/flightdeck/actions/runs/33950000001\n" },
+      { "name": "v0.2.0-rc.1", "tagName": "v0.2.0-rc.1", "isDraft": false, "isPrerelease": true, "publishedAt": "2026-09-20T00:00:00Z", "description": "## Verified\n\nhttps://github.com/Ap-Standard/flightdeck/actions/runs/33950000001" }
+    ]
+  },
+  "flightdeck": {
+    "pullRequests": [
+      { "number": 1, "title": "Publish the first card and fix its UTC date", "createdAt": "2026-09-05T00:00:00Z", "mergedAt": "2026-09-05T02:00:00Z", "body": "Mentions @someone-else in the body.", "labels": [], "comments": [] },
+      { "number": 2, "title": "Fix the card date so it prints the UTC day", "createdAt": "2026-09-20T00:00:00Z", "mergedAt": "2026-09-20T01:00:00Z", "body": null, "labels": ["type:bug", "gate-bypass"], "comments": [ { "body": "<!-- twoseat:review -->\n### twoseat\n\n**1 P1.**\n\n| Decision | block |", "createdAt": "2026-09-20T00:05:00Z" } ] }
+    ],
+    "releases": [
+      { "name": "v0.1.0", "tagName": "v0.1.0", "isDraft": false, "isPrerelease": false, "publishedAt": "2026-09-15T00:00:00Z", "description": "## Verified\n\nhttps://github.com/Ap-Standard/flightdeck/actions/runs/33950000002\n" },
+      { "name": null, "tagName": "v0.1.1", "isDraft": false, "isPrerelease": false, "publishedAt": "2026-09-25T10:00:00Z", "description": "Notes without a verification section." }
+    ]
+  }
+}

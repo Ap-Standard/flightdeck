@@ -1,0 +1,5 @@
+# Default rules, no allowlist: nothing in this repository is secret-shaped on purpose.
+title = "flightdeck"
+
+[extend]
+useDefault = true

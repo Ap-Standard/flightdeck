@@ -1,0 +1,41 @@
+# Collects, renders, and publishes through Actions-mode Pages. No branch is written.
+name: nightly
+
+on:
+  schedule:
+    - cron: '23 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: nightly
+  cancel-in-progress: false
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx tsx src/cli.ts
+        env:
+          # GITHUB_TOKEN reads public repositories. If a cross-repo read ever fails, a fine-grained
+          # read-only PAT stored as FLIGHTDECK_READ_TOKEN takes over with no workflow change (docs/runbook.md).
+          GITHUB_TOKEN: ${{ secrets.FLIGHTDECK_READ_TOKEN || secrets.GITHUB_TOKEN }}
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v5

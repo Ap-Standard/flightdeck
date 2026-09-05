@@ -1,0 +1,9 @@
+{
+  "owner": "Ap-Standard",
+  "repos": [{ "name": "twoseat", "aiReview": true }, { "name": "flightdeck", "aiReview": true }],
+  "policyStart": "2026-09-04T18:07:16Z",
+  "windowDays": 90,
+  "self": "flightdeck",
+  "nightlyWorkflow": "nightly.yml",
+  "siteUrl": "https://ap-standard.github.io/flightdeck/"
+}
