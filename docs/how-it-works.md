@@ -31,9 +31,11 @@ headline. The three lines under it are the product.
    `@mentions` in titles, then drops every body, comment, and description. A
    second test asserts no per-person key survives in the collected data at any
    depth.
-5. `src/metrics/` computes six tiles from the collected data. Each tile is one
-   module exporting its definition, its gaming analysis, its cross-check, and a
-   `compute` function.
+5. `src/metrics/` computes six tiles from the collected data. Five tiles are
+   one module each, exporting its definition, its gaming analysis, its
+   cross-check, and a `compute` function; time to restore, which has no data
+   until a production service exists, is defined in `src/metrics/index.ts`
+   beside the display order.
 6. `src/render/` writes `site/index.html`, `site/card.svg`, and
    `site/latest.json` by template literal. No chart library, no script, no
    external asset.
