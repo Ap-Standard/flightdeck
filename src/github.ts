@@ -34,16 +34,10 @@ async function call(url: string, token: string, body?: string): Promise<Response
   const headers = { authorization: `Bearer ${token}`, accept: 'application/vnd.github+json', 'user-agent': 'flightdeck' };
   const init: RequestInit = { method: body === undefined ? 'GET' : 'POST', headers, ...(body === undefined ? {} : { body }) };
   for (let attempt = 0; ; attempt += 1) {
-    let response: Response | undefined;
-    try {
-      response = await fetch(url, init);
-    } catch (error) {
-      if (attempt === 1) throw error;
-    }
+    const response = await fetch(url, init).catch((error: unknown) => { if (attempt === 1) throw error; return undefined; });
     if (response !== undefined) {
       if (response.ok || response.status === 404) return response;
-      if (response.status < 500) throw new Error(`GitHub returned ${String(response.status)} for ${url}`);
-      if (attempt === 1) throw new Error(`GitHub returned ${String(response.status)} for ${url}`);
+      if (response.status < 500 || attempt === 1) throw new Error(`GitHub returned ${String(response.status)} for ${url}`);
     }
     await new Promise((resolve) => setTimeout(resolve, 2000));
   }
