@@ -15,7 +15,9 @@ gh run watch <databaseId> -R Ap-Standard/flightdeck --exit-status
 A manual run is counted apart from scheduled runs on the reliability tile, so
 dispatching one hides nothing. The page updates when the `deploy` step
 finishes; the card's `generated YYYY-MM-DD UTC` text is the proof the new
-render landed.
+render landed. A change to anything under `static/` publishes the same way,
+at the next scheduled nightly or a dispatch, because the run copies those
+files into `site/` rather than committing them.
 
 ## Run it locally
 
