@@ -26,7 +26,8 @@ jobs:
       - name: rendered page holds no unformatted value
         run: |
           test -s site/index.html && test -s site/card.svg
-          if grep -nE 'NaN|undefined|null' site/index.html site/card.svg; then echo "::error::site/ holds an unformatted value."; exit 1; fi
+          if grep -nE 'NaN|undefined|null' site/index.html site/card.svg static/loop.html; then echo "::error::site/ holds an unformatted value."; exit 1; fi
+      - run: "! grep -rEn 'Mario|Kart|Nintendo|Luigi|Peach|Bros|<script src|<link|@import|url\\(|fetch\\(|—' static/ docs/ README.md CHANGELOG.md"
       # A file git reads as binary gets no patch from the pull request files API, so no review gate can see it.
       - name: source files are reviewable
         run: |
