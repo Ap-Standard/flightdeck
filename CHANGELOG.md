@@ -9,6 +9,15 @@ the pull request that carried the change and the mechanism it introduced.
 
 ### Added
 
+- A static trace page, `static/loop.html` ([#3]). One real change walked
+  through all seven gates with the GitHub object that proves each step, its
+  UTC timestamp, the elapsed time since the previous step, how the step gets
+  gamed, and what catches the gaming. Zero dependencies, zero required
+  script, one image, and no network call. `static/` is a page asset outside
+  the 1,100-line engine cap and carries its own printed cap of 250 lines
+  ([ADR 0003](docs/adr/0003-a-static-trace-page-beside-the-dashboard.md)).
+  The nightly copies it into `site/`; a CI grep holds the page to no
+  external reference.
 - The engine, in one pull request ([#1]). One GraphQL query per repository
   through global `fetch` with no runtime dependency; collection that drops
   every body and per-person field before anything is published; six tiles,
@@ -29,3 +38,4 @@ the pull request that carried the change and the mechanism it introduced.
 
 [Unreleased]: https://github.com/Ap-Standard/flightdeck/commits/main
 [#1]: https://github.com/Ap-Standard/flightdeck/pull/1
+[#3]: https://github.com/Ap-Standard/flightdeck/pull/3

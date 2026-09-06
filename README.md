@@ -12,6 +12,8 @@ gaming.
 
 [![flightdeck card: verified releases, median lead time, gate-bypass rate, and nights measured, with its generation date](https://ap-standard.github.io/flightdeck/card.svg)](https://ap-standard.github.io/flightdeck/)
 
+One change, walked through all seven nodes with its receipts: [loop.html](https://ap-standard.github.io/flightdeck/loop.html).
+
 The card above renders at `https://ap-standard.github.io/flightdeck/card.svg`,
 and the dashboard behind it is at `https://ap-standard.github.io/flightdeck/`,
 republished by every nightly run.
@@ -26,7 +28,7 @@ Not built: time to restore, no production service exists [not measured]; issue a
 | --- | --- |
 | **Decided** | A deployment is a verified release, not green CI ([ADR 0001](docs/adr/0001-a-deployment-is-a-verified-release.md)). Team-level only, enforced by two tests rather than a policy ([ADR 0002](docs/adr/0002-team-level-only-by-construction.md)). A tile over the line cap is cut, not squeezed in: issue aging ([docs/metrics.md](docs/metrics.md#issue-aging-cut-at-the-line-cap)). |
 | **Specified** | Every tile ships with its definition, its gaming analysis, and its cross-check, or it does not ship. An empty set prints "not measured" and a rate under 10 events prints as a count. |
-| **Measured** | 1094 lines of code, tests, workflows, and config by `git ls-files src test .github package.json tsconfig.json vitest.config.ts eslint.config.js flightdeck.config.json .gitleaks.toml \| xargs wc -l` on 2026-09-05, against a hard cap of 1,100. 24 tests passing by `npx vitest run` on the same day, with no network and no token. `dependencies` in `package.json` is `{}`. |
+| **Measured** | 1096 lines of code, tests, workflows, and config by `git ls-files src test .github package.json tsconfig.json vitest.config.ts eslint.config.js flightdeck.config.json .gitleaks.toml \| xargs wc -l` on 2026-09-06, against a hard cap of 1,100. `static/loop.html` is a page asset, outside that command and under its own 250-line cap ([ADR 0003](docs/adr/0003-a-static-trace-page-beside-the-dashboard.md)). 24 tests passing by `npx vitest run` on the same day, with no network and no token. `dependencies` in `package.json` is `{}`. |
 | **Reviewed** | Every pull request, by twoseat at `v0.1.0`, comment-only ([ai-review.yml](.github/workflows/ai-review.yml)). The first merged pull request is [#1](https://github.com/Ap-Standard/flightdeck/pull/1), the one that built this dashboard. The gate's own limits: zero findings on live pull requests so far ([twoseat #12](https://github.com/Ap-Standard/twoseat/issues/12)), and synthetic benchmark scores are an upper bound ([twoseat REPORT.md](https://github.com/Ap-Standard/twoseat/blob/main/bench/results/REPORT.md)). |
 
 ## Run it

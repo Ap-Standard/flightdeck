@@ -90,6 +90,8 @@ token.
 
 - Definitions, gaming analysis, and cross-check for every tile:
   [metrics.md](metrics.md).
+- One real change walked through all seven gates, receipt by receipt:
+  `loop.html` beside `index.html` on the published site.
 - Operating procedures: [runbook.md](runbook.md).
 - The raw numbers behind the page: `latest.json` beside `index.html` on the
   published site, in the shape `src/cli.ts` writes.

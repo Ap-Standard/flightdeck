@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<title>flightdeck: the loop</title>
+<style>
+:root{--text:#1f2328;--muted:#57606a;--dim:#8b949e;--page:#f6f8fa;--fill:#f0f2f4;--line:#d0d7de;--link:#0969da;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;padding:24px 16px 48px;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--text);background:var(--page)}
+main{max-width:720px;margin:0 auto} a{color:var(--link)}
+.up{font:600 13px/1 var(--mono);text-decoration:none}
+h1{margin:10px 0 12px;font-size:26px;line-height:1.22}
+header p{margin:0 0 8px;color:var(--muted)} header p.hint{font-size:13px}
+.rail{list-style:none;margin:22px 0 0;padding:0 0 0 28px;position:relative}
+.rail::before{content:"";position:absolute;left:6px;top:12px;bottom:12px;width:2px;background:var(--line)}
+.rail>li{position:relative;margin:0 0 12px}
+details{background:#fff;border:1px solid var(--line);border-radius:8px}
+details::details-content{opacity:0;transition:opacity .2s,content-visibility .2s allow-discrete}
+details[open]::details-content{opacity:1}
+summary{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;align-items:baseline;min-height:44px;padding:12px 40px 12px 14px;position:relative;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.num{color:var(--dim);font:600 12px/1.5 var(--mono)}
+summary h2{margin:0;font-size:15px;line-height:1.4;font-weight:600}
+.rcpt{grid-column:2;color:var(--muted);font:12px/1.5 var(--mono);overflow-wrap:anywhere}
+.dot{position:absolute;left:-29px;top:15px;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--dim)}
+details[open]>summary .dot{background:var(--text);border-color:var(--text)}
+.chev{position:absolute;right:16px;top:19px;width:7px;height:7px;border-right:2px solid var(--dim);border-bottom:2px solid var(--dim);transform:rotate(45deg);transition:transform .2s}
+details[open]>summary .chev{transform:rotate(-135deg)}
+.panel{border-top:1px solid var(--line);padding:14px}
+dl{margin:0;font-size:13px} dt{margin-top:10px;font-weight:600} dt:first-child{margin-top:0}
+dd{margin:2px 0 0;color:var(--muted)} dd.mono{font-family:var(--mono)}
+.card{display:block;width:100%;margin:12px 0 0;border:1px solid var(--line);border-radius:6px;background:#fff}
+.total{margin:12px 0 0;padding:10px 12px;background:var(--fill);border-radius:6px;font:600 13px/1.45 var(--mono);color:var(--text)}
+footer{margin:26px 0 0;color:var(--muted);font-size:13px} footer p{margin:0 0 8px}
+.live .dot{animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(31,35,40,.35)}70%{box-shadow:0 0 0 8px rgba(31,35,40,0)}100%{box-shadow:0 0 0 0 rgba(31,35,40,0)}}
+@media (max-width:480px){body{padding:16px 12px 40px}.rail{padding-left:22px}.dot{left:-23px}.panel dd a{display:block;padding:5px 0}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}.live .dot{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--dim)}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<a class="up" href="./">flightdeck</a>
+<h1>The loop, with its receipts</h1>
+<p>Seven steps move a change from an idea to the card on my profile. This page walks one real change through all seven. Every step links to the GitHub object that proves it. As of 2026-09-06.</p>
+<p class="hint">Tap a step. Only one stays expanded.</p>
+</header>
+
+<ol class="rail">
+<li><details name="loop" open>
+<summary><span class="dot"></span><span class="num">01</span><h2>Issue with acceptance criteria</h2><span class="rcpt">twoseat #4 &middot; 2026-09-01T00:16:29Z</span><span class="chev"></span></summary>
+<div class="panel"><dl>
+<dt>Receipt</dt><dd><a href="https://github.com/Ap-Standard/twoseat/issues/4">twoseat issue #4, "Policy engine and never-block degrade path"</a>, created 2026-09-01T00:16:29Z with four acceptance criteria, three days before the pull request that closed it.</dd>
+<dt>Elapsed</dt><dd class="mono">start</dd>
+<dt>How it gets gamed</dt><dd>Write the acceptance criteria after the code.</dd>
+<dt>What catches it</dt><dd>The two timestamps, and a pull request body whose first line is "Closes #4". The <a href="https://github.com/Ap-Standard/twoseat/blob/main/.github/PULL_REQUEST_TEMPLATE.md">pull request template</a> puts Direction and acceptance above Implementation.</dd>
+</dl></div>
+</details></li>
+
+<li><details name="loop">
+<summary><span class="dot"></span><span class="num">02</span><h2>Gated pull request: ci, gitleaks, ai-review</h2><span class="rcpt">twoseat #19 &middot; 2026-09-03T23:31:53Z</span><span class="chev"></span></summary>
+<div class="panel"><dl>
+<dt>Receipt</dt><dd><a href="https://github.com/Ap-Standard/twoseat/pull/19/checks">twoseat pull request #19</a>, created 2026-09-03T23:31:53Z: three pushes, and on the last one, <code>6c2573f4</code>, all three checks concluded success at 23:39:47Z. The review seat's reply on that push could not be read as a findings list, so its comment was rewritten at 23:39:44Z to say "The review did not run" and the check passed anyway. That is the rule this pull request introduced, working: the gate decides, and never enforces from inside itself. The retry is tracked in <a href="https://github.com/Ap-Standard/twoseat/issues/15">issue #15</a>.</dd>
+<dt>Elapsed</dt><dd class="mono">+2 d 23 h 15 min</dd>
+<dt>How it gets gamed</dt><dd>A gate that always passes.</dd>
+<dt>What catches it</dt><dd>The comment prints its own decision, and the dashboard lists every merged pull request whose decision read block or not-reviewed with no gate-bypass label: <a href="./#gate-bypass">gate-bypass rate</a>.</dd>
+</dl></div>
+</details></li>
+
+<li><details name="loop">
+<summary><span class="dot"></span><span class="num">03</span><h2>Merge, by me</h2><span class="rcpt">8b659cc0 &middot; 2026-09-04T04:40:29Z</span><span class="chev"></span></summary>
+<div class="panel"><dl>
+<dt>Receipt</dt><dd><a href="https://github.com/Ap-Standard/twoseat/commit/8b659cc0c57598720cebf0e1e8c72bbb20508ad0">merge commit <code>8b659cc0</code></a>, 2026-09-04T04:40:29Z, 15 files. Branch protection on <code>main</code> requires exactly two contexts, <code>ci</code> and <code>gitleaks</code>. The review check is deliberately not one of them, which is the same rule as step 02 applied to branch protection: a review seat that is wrong or unavailable can never block a merge.</dd>
+<dt>Elapsed</dt><dd class="mono">+5 h 9 min</dd>
+<dt>How it gets gamed</dt><dd>Skip the label.</dd>
+<dt>What catches it</dt><dd>Unlabeled bypasses: pull requests whose latest twoseat comment decided block or not-reviewed, has no Decision row, or is missing, and that carry no gate-bypass label. Listed with links on the <a href="./#gate-bypass">gate-bypass tile</a>.</dd>
+</dl></div>
+</details></li>
+
+<li><details name="loop">
+<summary><span class="dot"></span><span class="num">04</span><h2>Release with a Verified section</h2><span class="rcpt">twoseat v0.1.0 &middot; 2026-09-04T18:07:16Z</span><span class="chev"></span></summary>
+<div class="panel"><dl>
+<dt>Receipt</dt><dd><a href="https://github.com/Ap-Standard/twoseat/releases/tag/v0.1.0">twoseat v0.1.0</a>, published 2026-09-04T18:07:16Z. The notes end with a <code>## Verified</code> heading followed by a link to the Actions run in step 05. Green CI is not a deploy.</dd>
+<dt>Elapsed</dt><dd class="mono">+13 h 27 min</dd>
+<dt>How it gets gamed</dt><dd>Paste a heading with any link. Cut trivial releases to inflate the count.</dd>
+<dt>What catches it</dt><dd>flightdeck follows the link with one REST call and counts only a portfolio run that concluded success and was created after the release was published. Unverified releases are listed by name with the reason, in gray, never hidden: <a href="./#verified-releases">verified releases</a>.</dd>
+</dl></div>
+</details></li>
+
+<li><details name="loop">
+<summary><span class="dot"></span><span class="num">05</span><h2>Post-merge verification</h2><span class="rcpt">run 33996630594 &middot; 2026-09-05T22:41:22Z</span><span class="chev"></span></summary>
+<div class="panel"><dl>
+<dt>Receipt</dt><dd><a href="https://github.com/Ap-Standard/flightdeck/actions/runs/33996630594">flightdeck run 33996630594</a>, created 2026-09-05T22:41:22Z, concluded success. This is the released gate doing its job in a different repository: twoseat v0.1.0 reviewing flightdeck pull request #1, 44 files, one P2 at <code>src/collect.ts:71</code>, decision pass. I read the finding and <a href="https://github.com/Ap-Standard/flightdeck/pull/1#issuecomment-5555344364">declined it with my reasoning</a> at 22:55:23Z rather than silently dropping it.</dd>
+<dt>Elapsed</dt><dd class="mono">+1 d 4 h 34 min</dd>
+<dt>How it gets gamed</dt><dd>Call green CI a deploy.</dd>
+<dt>What catches it</dt><dd>The verification is a real run against a live pull request, not a staged one, and the disposition of every finding is on the public record. The detector is <a href="https://github.com/Ap-Standard/flightdeck/blob/main/src/collect.ts">src/collect.ts</a>.</dd>
+</dl></div>
+</details></li>
+
+<li><details name="loop">
+<summary><span class="dot"></span><span class="num">06</span><h2>flightdeck measures nightly</h2><span class="rcpt">run 34029288080 &middot; 2026-09-06T11:06:38Z</span><span class="chev"></span></summary>
+<div class="panel"><dl>
+<dt>Receipt</dt><dd>The first <em>scheduled</em> <a href="https://github.com/Ap-Standard/flightdeck/actions/runs/34029288080">nightly run, 34029288080</a>, 2026-09-06T11:06:38Z. Two manual dispatches on 2026-09-05 rendered the card first as go-live checks; the schedule is the measurement. That run counted twoseat v0.1.0 as a verified release.</dd>
+<dt>Elapsed</dt><dd class="mono">+12 h 25 min</dd>
+<dt>How it gets gamed</dt><dd>Backfill missed nights with manual runs.</dd>
+<dt>What catches it</dt><dd>The trigger is shown per count, and the run list is linked, so scheduled and dispatched nights are counted apart and an empty set prints "not measured": <a href="./#reliability">measurement reliability</a>.</dd>
+</dl></div>
+</details></li>
+
+<li class="live"><details name="loop">
+<summary><span class="dot"></span><span class="num">07</span><h2>Profile card</h2><span class="rcpt">card.svg &middot; generated 2026-09-06 UTC</span><span class="chev"></span></summary>
+<div class="panel"><dl>
+<dt>Receipt</dt><dd>The same live image that sits at the top of my profile, regenerated by every nightly run and printing the date it was made.</dd>
+<dt>Elapsed</dt><dd class="mono">+13 s, rendered inside that same run</dd>
+<dt>How it gets gamed</dt><dd>Let the schedule die and leave the card up.</dd>
+<dt>What catches it</dt><dd>The card prints its own generation date, and GitHub disables a schedule after 60 days of repository inactivity, so silence goes public instead of freezing a good number. Recorded as <a href="https://github.com/Ap-Standard/Ap-Standard/blob/main/docs/risks.md">risk R6</a>.</dd>
+</dl>
+<a href="./"><img class="card" src="card.svg" alt="flightdeck card: verified releases, median lead time, gate-bypass rate, nights measured, with its generation date; the same live image at the top of the profile"></a>
+<p class="total">Issue to first scheduled measurement: 5 d 10 h 50 min</p>
+</div>
+</details></li>
+</ol>
+
+<footer>
+<p>Zero required script. Published beside the dashboard by the same nightly run.</p>
+<p>This is one change, not a sample. The dashboard counts every change: <a href="./">flightdeck</a>, <a href="latest.json">latest.json</a>, <a href="https://github.com/Ap-Standard/flightdeck/blob/main/docs/metrics.md">docs/metrics.md</a>.</p>
+</footer>
+</main>
+
+<script>
+/* Optional. Arrow keys, Home and End step between stations. Delete this block and the page
+   loses no content: every station stays reachable by Tab, Space, and click. */
+(function () {
+  var steps = Array.prototype.slice.call(document.querySelectorAll('details[name="loop"]'));
+  if (steps.length === 0) { return; }
+  steps.forEach(function (d) { d.querySelector('h2').tabIndex = -1; });
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) { return; }
+    var at = steps.findIndex(function (d) { return d.hasAttribute('open'); });
+    var to = -1;
+    if (e.key === 'ArrowRight') { to = at + 1; }
+    else if (e.key === 'ArrowLeft') { to = at - 1; }
+    else if (e.key === 'Home') { to = 0; }
+    else if (e.key === 'End') { to = steps.length - 1; }
+    if (to < 0 || to >= steps.length) { return; }
+    e.preventDefault();
+    steps.forEach(function (d, i) { d.toggleAttribute('open', i === to); });
+    steps[to].querySelector('h2').focus();
+  });
+})();
+</script>
+</body>
+</html>
