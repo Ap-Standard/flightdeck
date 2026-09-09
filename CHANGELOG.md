@@ -36,6 +36,14 @@ the pull request that carried the change and the mechanism it introduced.
   decision records: a deployment is a verified release, and team-level only by
   construction.
 
+### Changed
+
+- The `ai-review` workflow runs `Ap-Standard/twoseat@v0.1.1` ([#5]). twoseat
+  v0.1.1 corrected the benchmark's scoring rule and changed no action code, so
+  this pull request's review run is that release's post-publish verification,
+  the way this repository's first review run was for v0.1.0.
+
 [Unreleased]: https://github.com/Ap-Standard/flightdeck/commits/main
 [#1]: https://github.com/Ap-Standard/flightdeck/pull/1
 [#3]: https://github.com/Ap-Standard/flightdeck/pull/3
+[#5]: https://github.com/Ap-Standard/flightdeck/pull/5
