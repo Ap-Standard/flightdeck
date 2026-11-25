@@ -99,3 +99,7 @@ One line in `flightdeck.config.json` and one fixture entry.
 - Common causes: the token cannot read a repository (see the fallback above);
   a repository in the config was deleted or renamed; a GitHub API outage,
   which the client retries once before failing.
+- `No artifacts named "github-pages" were found` from `deploy-pages` means
+  the deploy looked for the artifact before it was listable. The split
+  `measure` and `deploy` jobs prevent this; if it returns, check that the
+  two steps have not been merged back into one job, then re-run.
