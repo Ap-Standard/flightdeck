@@ -7,6 +7,15 @@ the pull request that carried the change and the mechanism it introduced.
 
 ## [Unreleased]
 
+### Fixed
+
+- The nightly no longer fails at random on `deploy-pages`. Upload and deploy
+  shared one job, and the deploy listed the run's artifacts under half a
+  second after the upload finalized; on 2026-11-21, 11-24, and 11-25 the list
+  came back empty and the run failed with `No artifacts named "github-pages"`.
+  Deploy now runs as its own job that `needs` the build, the layout GitHub's
+  Pages starter workflows use.
+
 ### Added
 
 - A static trace page, `static/loop.html` ([#3]). One real change walked

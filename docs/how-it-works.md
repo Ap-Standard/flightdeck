@@ -41,7 +41,9 @@ headline. The three lines under it are the product.
    external asset.
 7. `actions/upload-pages-artifact` and `actions/deploy-pages` publish `site/`
    through Actions-mode GitHub Pages. No branch is written, so the page cannot
-   drift from the code that rendered it.
+   drift from the code that rendered it. The upload runs in the `measure` job
+   and the deploy in a separate `deploy` job, so the artifact is listable
+   before the deploy looks for it.
 
 The same program runs with `--fixtures` on every pull request, reading
 `test/fixtures/` instead of the API, so CI proves the whole path without a
